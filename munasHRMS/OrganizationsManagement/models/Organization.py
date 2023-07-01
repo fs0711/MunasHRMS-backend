@@ -1,0 +1,68 @@
+# Python imports
+
+# Framework imports
+
+# Local imports
+from munasHRMS.generic import models
+from munasHRMS.generic import db
+from munasHRMS.generic.services.utils import constants, common_utils
+from munasHRMS.config import config
+
+
+
+class Organization(models.Model):
+    @classmethod
+    def validation_rules(cls):
+        return{
+            constants.ORGANIZTION__NAME:[{'rule':'required'}, {'rule':'datatype', 'datatype':str}],
+            constants.ORGANIZATION__ADDRESS:[{'rule':'required'}, {'rule':'datatype', 'datatype':str}],
+            constants.ORGANIZATION__CITY:[{'rule':'required'}, {'rule':'datatype', 'datatype':str}],
+            constants.ORGANIZATION__COUNTRY:[{'rule':'required'}, {'rule':'datatype', 'datatype':str}],
+            constants.ORGANIZATION__CP_NAME:[{'rule':'required'}, {'rule':'datatype', 'datatype':str}],
+            constants.ORGANIZATION__CP_EMAIL:[{'rule':'required'}, {'rule':'datatype', 'datatype':str}],
+            constants.ORGANIZATION__CP_CONTACT_NUMBER:[{'rule':'required'}, {'rule':'datatype', 'datatype':list}],
+            constants.ORGANIZATION__NTN:[{'rule':'datatype', 'datatype': str}]
+        }
+    
+    @classmethod
+    def update_validation_rules(cls): return {
+    }
+
+    name = db.StringField(required=True)
+    address = db.StringField(required=True)
+    city = db.StringField(required=True)
+    country = db.StringField(required=True)
+    cp_name = db.StringField(required=True)
+    cp_email = db.StringField(required=True)
+    cp_contact_number = db.ListField(required=True)
+    ntn = db.StringField(default='')
+
+
+
+    def __str__(self):
+        return str(self.pk)
+
+            # constants.CALL_RECORD__DATE: self[constants.CALL_RECORD__DATE],
+
+
+    def display(self):
+        return {
+            constants.ID:str(self[constants.ID]),
+            constants.ORGANIZTION__NAME: self[constants.ORGANIZTION__NAME],
+            constants.ORGANIZATION__ADDRESS: self[constants.ORGANIZATION__ADDRESS],
+            constants.ORGANIZATION__CITY: self[constants.ORGANIZATION__CITY],
+            constants.ORGANIZATION__COUNTRY: self[constants.ORGANIZATION__COUNTRY],
+            constants.ORGANIZATION__CP_NAME: self[constants.ORGANIZATION__CP_NAME],
+            constants.ORGANIZATION__CP_EMAIL: self[constants.ORGANIZATION__CP_EMAIL],
+            constants.ORGANIZATION__CP_CONTACT_NUMBER: self[constants.ORGANIZATION__CP_CONTACT_NUMBER],
+            constants.ORGANIZATION__NTN: self[constants.ORGANIZATION__NTN]
+        }
+
+    def dispaly_id_name(self):
+        return{
+            constants.ID:str(self[constants.ID]),
+            constants.ORGANIZTION__NAME: self[constants.ORGANIZTION__NAME]
+        }
+
+
+

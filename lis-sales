@@ -1,0 +1,9 @@
+server {
+    listen 80;
+    server_name lis.digtrosoft.com;
+
+    location / {
+        include uwsgi_params;
+        uwsgi_pass unix:/home/lis-sales/lis-sales.sock;
+    }
+}
