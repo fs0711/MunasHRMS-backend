@@ -1,0 +1,13 @@
+[Unit]
+Description=uWSGI instance to serve munas HRMS
+After=network.target
+
+[Service]
+User=root
+Group=www-data
+WorkingDirectory=/home/munashrms-backend
+Environment="PATH=/home/munashrms-backend/munashrms-env/bin"
+ExecStart=/home/munashrms-backend/munashrms-env/bin/uwsgi --ini munashrms.ini
+
+[Install]
+WantedBy=multi-user.target

@@ -99,7 +99,7 @@ class User(models.Model):
     phone_number = db.StringField(required=True)
     password = db.StringField(required=True)
     gender = db.StringField(required=True)
-    nic = db.StringField(required=True)
+    nic = db.StringField()
     role = db.DictField(required=True)
     manager = db.LazyReferenceField('User')
     organization = db.LazyReferenceField('Organization', required=True)

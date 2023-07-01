@@ -38,20 +38,20 @@ FILTER_DATE_FORMAT = "%d %m %Y"
 FILTER_DATETIME_FORMAT = "%d %m %Y %H:%M:%S"
 TIME_ZONE = "Asia/Karachi"
 
-FRONTEND_URL = "https://munas.digtrosoft.com"
+FRONTEND_URL = "https://munashrms.digtrosoft.com"
 MONGO_DB_USER = "munas"
 MONGO_DB_PASSWORD = "k9QauSm0wACivnIO"
 
 MONGO_DB_URI = ""
 if ENVIRONMENT == "LOCAL":
-    MONGO_DB_URI = f"mongodb://localhost:27017/munas"
+    MONGO_DB_URI = f"mongodb://localhost:27017/munasHRMS"
 if ENVIRONMENT == "STAGING":
     FUNCTION_LOGGING = True
     static_data_path = os.path.join(
         current_dir_path, "static/static_data.json")
     upload_files_path = os.path.join(current_dir_path, "static/uploads")
     # MONGO_DB_URI = f"mongodb://192.168.100.8:27017/ppbackend"
-    MONGO_DB_URI = f"mongodb+srv://{MONGO_DB_USER}:{MONGO_DB_PASSWORD}@munas-california.inrzszt.mongodb.net/munas"
+    MONGO_DB_URI = f"mongodb+srv://{MONGO_DB_USER}:{MONGO_DB_PASSWORD}@munas-california.inrzszt.mongodb.net/munasHRMS"
     #     "retryWrites=true&w=majority"
 
 DEFAULT_ADMIN_NAME = "Admin"

@@ -23,52 +23,31 @@
         },
         {
             "manager": 1,
-            "name": "gm",
+            "name": "Owner",
             "rights": [],
-            "title": "General Manager",
+            "title": "Owner",
             "user_role_id": 2
         },
         {
             "manager": 2,
-            "name": "dgm",
+            "name": "manager",
             "rights": [],
-            "title": "Deputy General Manager",
+            "title": "Manager",
             "user_role_id": 3
         },
         {
             "manager": 3,
             "name": "am",
             "rights": [],
-            "title": "Manager User",
+            "title": "Assistant Manager",
             "user_role_id": 4
         },
         {
             "manager": 4,
-            "name": "agent",
+            "name": "user",
             "rights": [],
-            "title": "Agent",
+            "title": "User",
             "user_role_id": 5
-        },
-        {
-            "manager": 3,
-            "name": "dgm_agent",
-            "rights": [],
-            "title": "DGM Agent",
-            "user_role_id": 6
-        },
-        {
-            "manager": 3,
-            "name": "dgm_lancer",
-            "rights": [],
-            "title": "DGM Freelancer",
-            "user_role_id": 7
-        },
-        {
-            "manager": 4,
-            "name": "am_lancer",
-            "rights": [],
-            "title": "AM freelancer",
-            "user_role_id": 8
         },
         {
             "manager": null,
