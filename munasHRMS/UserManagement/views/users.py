@@ -57,36 +57,6 @@ def loginmobile_user_view(data, platform):
     data = common_utils.posted()
     return UserController.login_controller(data=data, platform=platform)
 
-@users_bp.route("/create", methods=["GET"])
-@decorators.is_authenticated
-@decorators.roles_allowed([constants.ROLE_ID_ADMIN])
-@decorators.keys_validator()
-def create_viewget(data):
-    """
-    Fetching Roles and there IDs 
-    """
-    roles = constants.DEFAULT_ROLE_OBJECTS
-    all_user_role = []
-    for role in roles:
-        all_user_role.append([role["user_role_id"], role["title"]])
-    """
-    Fetching Users from Common utils
-    """
-    users = UserController.get_user_childs(
-        common_utils.current_user())
-    all_users =[]
-    for user in users:
-        all_users.append([str(user[constants.ID]), user[constants.USER__NAME]])
-    res = {}
-    res["organizations"] = OrganizationController.get_organizations()
-    res["all-users"] = all_users
-    res["roles"] = all_user_role
-    res =  response_utils.get_response_object(
-            response_code=response_codes.CODE_SUCCESS,
-            response_message=response_codes.MESSAGE_SUCCESS,
-            response_data=res)
-    return render_template("adduser.html", **res)
-
 
 @users_bp.route("/create", methods=["POST"])
 @decorators.is_authenticated
@@ -108,7 +78,7 @@ def create_view(data):
 )
 def read_view(data):
     res = UserController.read_controller(data=data)
-    return render_template("view_user.html", **res)
+    return res
 
 
 @users_bp.route("/update", methods=["GET","POST"])
@@ -160,23 +130,20 @@ def restore_view(data):
     return redirect("/read")
 
 
-@users_bp.route("/", methods=["GET"])
-@decorators.logging
-@decorators.keys_validator()
-def logined_user_view(data):
-    return render_template("login.html", Response=response_utils.get_response_object())
+# @users_bp.route("/", methods=["GET"])
+# @decorators.logging
+# @decorators.keys_validator()
+# def logined_user_view(data):
+#     return render_template("login.html", Response=response_utils.get_response_object())
 
 
-@users_bp.route("/", methods=["POST"])
-@decorators.logging
-@decorators.keys_validator(constants.LOGIN_REQUIRED_FIELDS_LIST, [])
-def login_user_view(data):
-    res = UserController.login_controller(data=data)
-    return render_template("login.html", **res)
-    # if res['response_code'] != response_codes.CODE_SUCCESS:
-    #     return redirect(url_for('dashboard_view'), Response=res)
-    # else:
-    #     return render_template("failed.html", Response=res)
+# @users_bp.route("/", methods=["POST"])
+# @decorators.logging
+# @decorators.keys_validator(constants.LOGIN_REQUIRED_FIELDS_LIST, [])
+# def login_user_view(data):
+#     res = UserController.login_controller(data=data)
+#     return render_template("login.html", **res)
+
 
 
 @users_bp.route("/logout", methods=["GET"])
@@ -188,12 +155,13 @@ def logout_user_view(_):
     return render_template("logout.html", **res)
 
 
-@users_bp.route("/change_password", methods=["GET"])
+@users_bp.route("/getuserchilds", methods=["GET"])
 @decorators.logging
 @decorators.is_authenticated
 @decorators.keys_validator()
-def change_password_view(_):
-    return render_template("changepassword.html")
+def get_user_childs_view(_):
+    return UserController.get_users_childs_list()
+
 
 @users_bp.route("/change_password", methods=["POST"])
 @decorators.logging

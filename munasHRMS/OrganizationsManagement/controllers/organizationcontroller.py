@@ -18,7 +18,7 @@ class OrganizationController(Controller):
     def create_controller(cls, data):
         is_valid, error_messages = cls.cls_validate_data(data=data)
         if not is_valid:
-            return response_utils.get_response_object(
+            return response_utils.get_json_response_object(
                             response_code=response_codes.CODE_VALIDATION_FAILED,
                             response_message=response_codes.MESSAGE_VALIDATION_FAILED,
                             response_data=error_messages
@@ -26,7 +26,7 @@ class OrganizationController(Controller):
     
         _,_,obj = cls.db_insert_record(data=data, db_commit=False)
         obj.save()
-        return response_utils.get_response_object(
+        return response_utils.get_json_response_object(
             response_code=response_codes.CODE_SUCCESS,
             response_message=response_codes.MESSAGE_SUCCESS,
             response_data=obj.display()
@@ -35,7 +35,7 @@ class OrganizationController(Controller):
 
     @classmethod
     def read_controller(cls, data):
-            return response_utils.get_response_object(
+            return response_utils.get_json_response_object(
             response_code=response_codes.CODE_SUCCESS,
             response_message=response_codes.MESSAGE_SUCCESS,
             response_data=[
@@ -48,18 +48,18 @@ class OrganizationController(Controller):
             read_filter={constants.ID: data[constants.ID]}, update_filter=data
         )
         if not is_valid:
-            return response_utils.get_response_object(
+            return response_utils.get_json_response_object(
                 response_code=response_codes.CODE_VALIDATION_FAILED,
                 response_message=response_codes.MESSAGE_VALIDATION_FAILED,
                 response_data=error_messages
             )
         if not obj:
-            return response_utils.get_response_object(
+            return response_utils.get_json_response_object(
                 response_code=response_codes.CODE_RECORD_NOT_FOUND,
                 response_message=response_codes.MESSAGE_NOT_FOUND_DATA.format(
                     constants.USER.title(), constants.ID
                 ))
-        return response_utils.get_response_object(
+        return response_utils.get_json_response_object(
             response_code=response_codes.CODE_SUCCESS,
             response_message=response_codes.MESSAGE_SUCCESS,
             response_data=obj.display(),
@@ -74,12 +74,12 @@ class OrganizationController(Controller):
             update_mode=constants.UPDATE_MODE__PARTIAL,
         )
         if obj:
-            return response_utils.get_response_object(
+            return response_utils.get_json_response_object(
                 response_code=response_codes.CODE_SUCCESS,
                 response_message=response_codes.MESSAGE_SUCCESS,
                 response_data=obj.display(),
             )
-        return response_utils.get_response_object(
+        return response_utils.get_json_response_object(
             response_code=response_codes.CODE_RECORD_NOT_FOUND,
             response_message=response_codes.MESSAGE_NOT_FOUND_DATA.format(
                 constants.ORGANIZATION.title(), constants.ID

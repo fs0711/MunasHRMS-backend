@@ -27,7 +27,6 @@ class User(models.Model):
                 },
             ],
             constants.USER__PHONE_NUMBER: [
-                {"rule": "required"},
                 {"rule": "datatype", "datatype": str},
                 {
                     "rule": "unique",
@@ -45,7 +44,6 @@ class User(models.Model):
                 {"rule": "choices", "options": constants.GENDER_LIST},
             ],
             constants.USER__NIC: [
-                {"rule": "required"},
                 {"rule": "datatype", "datatype": str},
                 {
                     "rule": "unique",
@@ -96,7 +94,7 @@ class User(models.Model):
 
     name = db.StringField(required=True)
     email_address = db.StringField(required=True)
-    phone_number = db.StringField(required=True)
+    phone_number = db.StringField(default="")
     password = db.StringField(required=True)
     gender = db.StringField(required=True)
     nic = db.StringField()

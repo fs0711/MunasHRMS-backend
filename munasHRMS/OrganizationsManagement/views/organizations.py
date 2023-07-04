@@ -17,20 +17,13 @@ organizations_bp = Blueprint("organizations_bp", __name__)
 @organizations_bp.route("/create", methods=["POST"])
 @decorators.is_authenticated
 @decorators.keys_validator(
-    constants.REQUIRED_FIELDS_LIST__ORGANIZATION,
+constants.REQUIRED_FIELDS_LIST__ORGANIZATION,
     constants.OPTIONAL_FIELDS_LIST__ORGANIZATION,
     request_form_data=False
 )
 def create_organizations(data):
     res = OrganizationController.create_controller(data=data)
     return res
-
-
-@organizations_bp.route("/create", methods=["GET"])
-@decorators.is_authenticated
-@decorators.keys_validator()
-def create_organizations_veiw(data):
-    return render_template("addorganizations.html")
 
 
 @organizations_bp.route("/read", methods=["POST"])
@@ -49,14 +42,14 @@ def organization_read_view(data):
 @decorators.is_authenticated
 @decorators.keys_validator()
 def read_view(data):
-    res = OrganizationController.read_controller(data=data)
-    return render_template("vieworganizations.html", **res)
+    return OrganizationController.read_controller(data=data)
+
 
 @organizations_bp.route("/getorganizations", methods=["GET"])
 @decorators.is_authenticated
-@decorators.keys_validator()
-def read_view(data):
-    res = OrganizationController.get_organizations(data=data)
+# @decorators.keys_validator()
+def get_organizations():
+    res = OrganizationController.get_organizations()
     return res
 
 

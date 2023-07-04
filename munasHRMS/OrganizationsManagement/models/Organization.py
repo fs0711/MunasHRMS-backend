@@ -20,7 +20,7 @@ class Organization(models.Model):
             constants.ORGANIZATION__COUNTRY:[{'rule':'required'}, {'rule':'datatype', 'datatype':str}],
             constants.ORGANIZATION__CP_NAME:[{'rule':'required'}, {'rule':'datatype', 'datatype':str}],
             constants.ORGANIZATION__CP_EMAIL:[{'rule':'required'}, {'rule':'datatype', 'datatype':str}],
-            constants.ORGANIZATION__CP_CONTACT_NUMBER:[{'rule':'required'}, {'rule':'datatype', 'datatype':list}],
+            constants.ORGANIZATION__CP_PHONE_NUMBER:[{'rule':'required'}, {'rule':'datatype', 'datatype':list}],
             constants.ORGANIZATION__NTN:[{'rule':'datatype', 'datatype': str}]
         }
     
@@ -33,8 +33,8 @@ class Organization(models.Model):
     city = db.StringField(required=True)
     country = db.StringField(required=True)
     cp_name = db.StringField(required=True)
-    cp_email = db.StringField(required=True)
-    cp_contact_number = db.ListField(required=True)
+    cp_email_address = db.StringField(required=True)
+    cp_phone_number = db.ListField(required=True)
     ntn = db.StringField(default='')
 
 
@@ -54,7 +54,7 @@ class Organization(models.Model):
             constants.ORGANIZATION__COUNTRY: self[constants.ORGANIZATION__COUNTRY],
             constants.ORGANIZATION__CP_NAME: self[constants.ORGANIZATION__CP_NAME],
             constants.ORGANIZATION__CP_EMAIL: self[constants.ORGANIZATION__CP_EMAIL],
-            constants.ORGANIZATION__CP_CONTACT_NUMBER: self[constants.ORGANIZATION__CP_CONTACT_NUMBER],
+            constants.ORGANIZATION__CP_PHONE_NUMBER: self[constants.ORGANIZATION__CP_PHONE_NUMBER],
             constants.ORGANIZATION__NTN: self[constants.ORGANIZATION__NTN]
         }
 
