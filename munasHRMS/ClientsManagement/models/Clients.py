@@ -30,7 +30,7 @@ class Clients(models.Model):
     }
 
     name = db.StringField(required=True)
-    organization = db.LazyReferenceField(Organization, required=True)
+    organization = db.LazyReferenceField('Organization', required=True)
     cp_phone_number = db.ListField()
     contact_person = db.StringField(required=True)
     country = db.StringField(required=True)

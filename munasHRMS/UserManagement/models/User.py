@@ -101,8 +101,8 @@ class User(models.Model):
     gender = db.StringField(required=True)
     nic = db.StringField()
     role = db.DictField(required=True)
-    manager = db.LazyReferenceField(User)
-    organization = db.LazyReferenceField(Organization, required=True)
+    manager = db.LazyReferenceField('User')
+    organization = db.LazyReferenceField('Organization')
 
 
 
