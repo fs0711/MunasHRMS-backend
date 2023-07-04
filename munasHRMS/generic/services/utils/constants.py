@@ -54,19 +54,16 @@ OBJECT_STATUS_INACTIVE = static_data["statuses"][1]
 OBJECT_STATUS_SUSPENDED = static_data["statuses"][2]
 # DEFAULT ROLES
 DEFAULT_ADMIN_ROLE_OBJECT = static_data["user_roles_and_rights"][0]
-DEFAULT_GM_ROLE_OBJECT = static_data["user_roles_and_rights"][1]
-DEFAULT_DGM_ROLE_OBJECT = static_data["user_roles_and_rights"][2]
+DEFAULT_OWNER_ROLE_OBJECT = static_data["user_roles_and_rights"][1]
+DEFAULT_MANAGER_ROLE_OBJECT = static_data["user_roles_and_rights"][2]
 DEFAULT_AM_ROLE_OBJECT = static_data["user_roles_and_rights"][3]
-DEFAULT_AGENT_ROLE_OBJECT = static_data["user_roles_and_rights"][4]
-DEFAULT_DGM_AGENT_ROLE_OBJECT = static_data["user_roles_and_rights"][5]
-DEFAULT_DEFAULT_ROLE_OBJECT = static_data["user_roles_and_rights"][6]
+DEFAULT_USER_ROLE_OBJECT = static_data["user_roles_and_rights"][4]
 DEFAULT_ROLE_OBJECTS = [
     DEFAULT_ADMIN_ROLE_OBJECT,
-    DEFAULT_GM_ROLE_OBJECT,
-    DEFAULT_DGM_ROLE_OBJECT,
+    DEFAULT_OWNER_ROLE_OBJECT,
+    DEFAULT_MANAGER_ROLE_OBJECT,
     DEFAULT_AM_ROLE_OBJECT,
-    DEFAULT_AGENT_ROLE_OBJECT,
-    DEFAULT_DGM_AGENT_ROLE_OBJECT,
+    DEFAULT_USER_ROLE_OBJECT
 ]
 
 OBJECT_STATUS_ACTIVE_ID = 1
@@ -81,24 +78,17 @@ SEARCH_DEPTH_MAX = 4
 
 # USER TYPES
 ADMIN = "admin"
-GM = "gm"
-DGM = "dgm"
+OWNER = "owner"
+MANAGER = "manager"
 AM = "am"
-AGENT = "agent"
-DGM_AGENT = "dgm_agent"
-DGM_LANCER = "dgm_lancer"
-AM_LANCER = "am_lancer"
-
+USER = "user"
 
 # USER ROLE IDS
 ROLE_ID_ADMIN = 1
-ROLE_ID_GM = 2
-ROLE_ID_DGM = 3
+ROLE_ID_OWNER = 2
+ROLE_ID_MANAGER = 3
 ROLE_ID_AM = 4
-ROLE_ID_AGENT = 5
-ROLE_ID_DGM_AGENT = 6
-ROLE_ID_DGM_LANCER = 7
-ROLE_ID_AM_LANCER = 8
+ROLE_ID_USER = 5
 
 # ENDING
 
@@ -120,6 +110,7 @@ ADDRESS__PROVINCE = "province"
 ADDRESS__CITY = "city"
 ADDRESS__AREA = "area"
 ADDRESS__STREET_ADDRESS = "street_address"
+ADDRESS__ZIP_CODE = "zip_code"
 
 ADDRESS_VALIDATION_FORMAT = {
     "key": [
@@ -127,9 +118,8 @@ ADDRESS_VALIDATION_FORMAT = {
             "rule": "choices",
             "options": [
                 ADDRESS__COUNTRY,
-                ADDRESS__PROVINCE,
                 ADDRESS__CITY,
-                ADDRESS__AREA,
+                ADDRESS__ZIP_CODE,
                 ADDRESS__STREET_ADDRESS,
             ],
         }
@@ -188,6 +178,127 @@ TOKEN__IS_EXPIRED = "is_expired"
 TOKEN__IS_REVOKED = "is_revoked"
 TOKEN__PLATFORM = "platform"
 
+# Required, Optional Fields Lists
+# User
+LOGIN_REQUIRED_FIELDS_LIST = [USER__EMAIL_ADDRESS, USER__PASSWORD]
+REQUIRED_FIELDS_LIST__USER = [
+    USER__NAME,
+    USER__EMAIL_ADDRESS,
+    USER__PASSWORD,
+    USER__PHONE_NUMBER,
+    USER__GENDER,
+    USER__ROLE,
+    USER__NIC,
+    USER__ORGANIZATION
+    
+]
+OPTIONAL_FIELDS_LIST__USER = [
+    USER__EMAIL_ADDRESS,
+    USER__PHONE_NUMBER,
+    # USER__ROLE__MANAGER_NAME,
+    USER__MANAGER]
+REQUIRED_UPDATE_FIELDS_LIST__USER = list(
+    set(REQUIRED_FIELDS_LIST__USER + [ID])
+    - set([USER__PASSWORD, USER__EMAIL_ADDRESS, USER__PHONE_NUMBER])
+)
+ALL_FIELDS_LIST__USER = OPTIONAL_FIELDS_LIST__USER + \
+    REQUIRED_FIELDS_LIST__USER + [ID]
+UPDATE_FIELDS_LIST__USER = list(
+    set(REQUIRED_FIELDS_LIST__USER + [ID]))
+
+
+
+# Client Constants
+CLIENT = "client"
+CLIENT__ID = "client_id"
+CLIENT__NAME = "name"
+CLIENT__CONTACT_PERSON = "contact_person"
+CLIENT__CP_PHONE_NUMBER = "cp_phone_number"
+CLIENT__CP_EMAIL = "cp_email"
+CLIENT__CITY = "city"
+CLIENT__ZIPCODE = "zipcode"
+CLIENT__COUNTRY = "country"
+CLIENT__ORGANIZATION = "organization"
+
+REQUIRED_FIELDS_LIST__CLIENTS = [
+    CLIENT__NAME,
+    CLIENT__COUNTRY,
+    CLIENT__CITY,
+    CLIENT__ORGANIZATION
+]
+
+OPTIONAL_FIELDS_LIST__CLIENTS = [
+    CLIENT__CONTACT_PERSON,
+    CLIENT__CP_EMAIL,
+    CLIENT__CP_PHONE_NUMBER,
+    CLIENT__ZIPCODE
+]
+
+# Sites
+SITE = "site"
+SITE__ID = "site_id"
+SITE__NAME = "name"
+SITE__ADDRESS = "address"
+SITE__CITY = "city"
+SITE__COUNTRY = "country"
+SITE__ZIPCODE = "zipcode"
+SITE__CONTACT_PERSON = "contact_person"
+SITE__CP_EMAIL = "cp_email"
+SITE__CP_PHONE_NUMBER = "cp_phone_number"
+
+REQUIRED_FIELDS_LIST__SITE = [
+    SITE__NAME,
+    SITE__ADDRESS,
+    SITE__CITY,
+    SITE__COUNTRY,
+    SITE__ZIPCODE
+]
+
+OPTIONAL_FIELDS_LIST_SITE = [
+    SITE__CONTACT_PERSON,
+    SITE__CP_EMAIL,
+    SITE__CP_PHONE_NUMBER
+]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # Lead History Constants
 LEAD_HISTORY = "lead_history"
 HISTORY__ID = "history_id"
@@ -244,34 +355,6 @@ DATE_TO = "date_end"
 
 
 
-
-# Required, Optional Fields Lists
-# User
-LOGIN_REQUIRED_FIELDS_LIST = [USER__EMAIL_ADDRESS, USER__PASSWORD]
-REQUIRED_FIELDS_LIST__USER = [
-    USER__NAME,
-    USER__EMAIL_ADDRESS,
-    USER__PASSWORD,
-    USER__PHONE_NUMBER,
-    USER__GENDER,
-    USER__ROLE,
-    USER__NIC,
-    USER__ORGANIZATION
-    
-]
-OPTIONAL_FIELDS_LIST__USER = [
-    USER__EMAIL_ADDRESS,
-    USER__PHONE_NUMBER,
-    # USER__ROLE__MANAGER_NAME,
-    USER__MANAGER]
-REQUIRED_UPDATE_FIELDS_LIST__USER = list(
-    set(REQUIRED_FIELDS_LIST__USER + [ID])
-    - set([USER__PASSWORD, USER__EMAIL_ADDRESS, USER__PHONE_NUMBER])
-)
-ALL_FIELDS_LIST__USER = OPTIONAL_FIELDS_LIST__USER + \
-    REQUIRED_FIELDS_LIST__USER + [ID]
-UPDATE_FIELDS_LIST__USER = list(
-    set(REQUIRED_FIELDS_LIST__USER + [ID]))
 
 
 
@@ -400,41 +483,6 @@ OPTIONAL_FIELDS_LIST__LEAD_FOLLOWUP = [
 ]
 
 
-
-
-# Client Constants
-CLIENT = "lead"
-CLIENT__ID = "lead_id"
-CLIENT__NAME = "first_name"
-CLIENT__NIC = "nic"
-CLIENT__PHONE_NUMBER = "phone_number"
-CLIENT__EMAIL_ADDRESS = "email_address"
-CLIENT__ADDRESS = "address"
-CLIENT__ADDRESS__KEY_LIST = ["Home", "Office"]
-CLIENT__GENDER = "gender"
-CLIENT__COUNTRY = "country"
-CLIENT__CITY = "city"
-CLIENT__CLIENT_CATEGORY = "client_category"
-CLIENT__CLIENT_CATEGORY__LIST = ["Investor", "User", "Agent"]
-CLIENT__ASSIGNED_TO = "assigned_to"
-CLIENT__ASSIGNED_BY = "assigned_by"
-CLIENT__TRANSFERED = "transfered"
-CLIENT__TRANSFERED_ON = "transfered_on"
-
-
-#Clients 
-
-REQUIRED_FIELDS_LIST__CLIENTS = [
-    CLIENT__NAME,
-    CLIENT__NIC,
-    CLIENT__PHONE_NUMBER,
-    CLIENT__EMAIL_ADDRESS,
-    CLIENT__ADDRESS,
-    CLIENT__GENDER,
-    CLIENT__COUNTRY,
-    CLIENT__CITY,
-    CLIENT__CLIENT_CATEGORY,
-]
 
 #temp fields
 
