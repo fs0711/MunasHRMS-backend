@@ -52,6 +52,13 @@ def read_view(data):
     res = OrganizationController.read_controller(data=data)
     return render_template("vieworganizations.html", **res)
 
+@organizations_bp.route("/getorganizations", methods=["GET"])
+@decorators.is_authenticated
+@decorators.keys_validator()
+def read_view(data):
+    res = OrganizationController.get_organizations(data=data)
+    return res
+
 
 @organizations_bp.route("/update", methods=["GET","POST"])
 @decorators.is_authenticated

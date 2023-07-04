@@ -23,28 +23,12 @@ from munasHRMS.LeadsManagement.controllers.DashboardController import DashboardC
 from munasHRMS.LeadsManagement.controllers.DashboardController import DashboardFollow
 
 
-@app.route("/home", methods=["GET"])
-# @decorators.logging
-@decorators.is_authenticated
-@decorators.keys_validator(
-    [],
-    constants.ALL_FIELDS_LIST__LEAD,
-)
-def dashboard_view(data):
-    res = DashboardController.get_dashboard_stats()
-    return render_template('dashboard.html', **res)
-
-
-@app.route("/addlead", methods=["GET"])
-def addlead_view():
-    return render_template('addlead.html')
-
 @app.route("/api/static-data", methods=["GET"])
 def static_data_view():
     return jsonify(constants.STATIC_DATA)
 
 
-app.register_blueprint(users_bp, url_prefix="/")
+app.register_blueprint(users_bp, url_prefix="/api/users")
 app.register_blueprint(leads_bp, url_prefix="/api/leads")
 app.register_blueprint(organizations_bp, url_prefix="/api/organizations")
 app.register_blueprint(follow_ups_bp, url_prefix="/api/follow_ups")

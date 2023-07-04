@@ -87,5 +87,8 @@ class OrganizationController(Controller):
 
     @classmethod
     def get_organizations(cls):
-         data = {}
-         return [{'id':str(obj[constants.ID]), 'name':obj[constants.ORGANIZTION__NAME]} for obj in cls.db_read_records(read_filter=data)]
+        return response_utils.get_json_response_object(
+        response_code=response_codes.CODE_SUCCESS,
+        response_message=response_codes.MESSAGE_SUCCESS,
+        response_data=[{'id':str(obj[constants.ID]), 'name':obj[constants.ORGANIZTION__NAME]} for obj in cls.db_read_records(read_filter={})],
+        )
