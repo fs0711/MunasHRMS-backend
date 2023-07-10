@@ -94,7 +94,7 @@ class User(models.Model):
 
     name = db.StringField(required=True)
     email_address = db.StringField(required=True)
-    phone_number = db.StringField(default="")
+    phone_number = db.StringField(required=True)
     password = db.StringField(required=True)
     gender = db.StringField(required=True)
     nic = db.StringField()

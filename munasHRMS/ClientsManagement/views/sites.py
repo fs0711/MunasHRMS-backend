@@ -13,14 +13,14 @@ from munasHRMS.UserManagement.controllers.UserController import UserController
 from munasHRMS.generic.services.utils import constants, decorators, common_utils
 from munasHRMS.config import config
 
-clients_bp = Blueprint("clients_bp", __name__)
+sites_bp = Blueprint("sites_bp", __name__)
 
 
-@clients_bp.route("/create", methods=["POST"])
+@sites_bp.route("/create", methods=["POST"])
 @decorators.is_authenticated
 @decorators.keys_validator(
-    constants.REQUIRED_FIELDS_LIST__CLIENTS,
-    constants.OPTIONAL_FIELDS_LIST__CLIENTS,
+    constants.REQUIRED_FIELDS_LIST__SITE,
+    constants.OPTIONAL_FIELDS_LIST__SITE,
     request_form_data=False
 )
 def leads_create_view(data):
@@ -28,7 +28,7 @@ def leads_create_view(data):
     return (rest)
 
 
-@clients_bp.route("/read", methods=["GET", "POST"])
+@sites_bp.route("/read", methods=["GET", "POST"])
 @decorators.is_authenticated
 @decorators.keys_validator()
 def read_view(data):
@@ -37,14 +37,14 @@ def read_view(data):
     return ClientsController.read_controller(data=data)
 
 
-@clients_bp.route("/getclients", methods=["GET"])
+@sites_bp.route("/getclients", methods=["GET"])
 @decorators.is_authenticated
 # @decorators.keys_validator()
 def get_view():
     return ClientsController.get_clients()
 
 
-@clients_bp.route("/update", methods=["PUT"])
+@sites_bp.route("/update", methods=["PUT"])
 @decorators.is_authenticated
 # @decorators.roles_allowed([constants.ROLE_ID_ADMIN])
 @decorators.keys_validator(
@@ -54,7 +54,7 @@ def get_view():
 def update_view(data):
     return ClientsController.update_controller(data=data)
 
-@clients_bp.route("/search", methods=["POST", "GET"])
+@sites_bp.route("/search", methods=["POST", "GET"])
 @decorators.is_authenticated
 @decorators.keys_validator()
 def search_view(data):

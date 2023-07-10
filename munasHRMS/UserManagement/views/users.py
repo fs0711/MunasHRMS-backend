@@ -59,6 +59,7 @@ def loginmobile_user_view(data, platform):
 
 
 @users_bp.route("/create", methods=["POST"])
+@decorators.logging
 @decorators.is_authenticated
 @decorators.roles_allowed([constants.ROLE_ID_ADMIN])
 @decorators.keys_validator(
