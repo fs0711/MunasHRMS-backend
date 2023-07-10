@@ -7,60 +7,56 @@ from datetime import datetime
 from flask import Blueprint, redirect, url_for, redirect, render_template, request
 
 # Local imports
-from munasHRMS.ClientsManagement.controllers.ClientsController import ClientsController
-from munasHRMS.LeadsManagement.controllers.FollowUpController import FollowUpController
+from munasHRMS.LeavesManagement.controllers.LeavesController import LeavesController
 from munasHRMS.UserManagement.controllers.UserController import UserController
 from munasHRMS.generic.services.utils import constants, decorators, common_utils
 from munasHRMS.config import config
 
-clients_bp = Blueprint("clients_bp", __name__)
+leaves_bp = Blueprint("leaves_bp", __name__)
 
 
-@clients_bp.route("/create", methods=["POST"])
+@leaves_bp.route("/create", methods=["GET"])
+@decorators.is_authenticated
+def employees_create_view_get():
+    return render_template("addemployee.html")
+
+@leaves_bp.route("/create", methods=["POST"])
 @decorators.is_authenticated
 @decorators.keys_validator(
-    constants.REQUIRED_FIELDS_LIST__CLIENTS,
-    constants.OPTIONAL_FIELDS_LIST__CLIENTS,
+    constants.REQUIRED_FIELDS_LIST__LEAVE,
     request_form_data=False
 )
-def leads_create_view(data):
-    rest = ClientsController.create_controller(data=data)
+def employees_create_view(data):
+    rest = LeavesController.create_controller(data=data)
     return (rest)
 
-
-@clients_bp.route("/read", methods=["GET", "POST"])
+@leaves_bp.route("/read", methods=["GET", "POST"])
 @decorators.is_authenticated
 @decorators.keys_validator()
 def read_view(data):
     if request.method == "POST":
         data = request.form
-    return ClientsController.read_controller(data=data)
+    res = LeavesController.read_controller(data=data)
+    return render_template("leaverequest.html", **res)
 
 
-@clients_bp.route("/getclients", methods=["GET"])
-@decorators.is_authenticated
-# @decorators.keys_validator()
-def get_view():
-    return ClientsController.get_clients()
-
-
-@clients_bp.route("/update", methods=["PUT"])
+@leaves_bp.route("/update", methods=["POST"])
 @decorators.is_authenticated
 # @decorators.roles_allowed([constants.ROLE_ID_ADMIN])
 @decorators.keys_validator(
-    [],
-    constants.ALL_FIELDS_LIST__LEAD,
+    constants.UPDATE_FIELDS_LIST__LEAVE,
+    request_form_data=False
 )
 def update_view(data):
-    return ClientsController.update_controller(data=data)
+    return LeavesController.update_controller(data=data)
 
-@clients_bp.route("/search", methods=["POST", "GET"])
+@leaves_bp.route("/search", methods=["POST", "GET"])
 @decorators.is_authenticated
 @decorators.keys_validator()
 def search_view(data):
     if request.method == "POST":
         data = request.form
-        res = ClientsController.search_controller(data=data)
+        res = LeavesController.search_controller(data=data)
         return render_template("find_leads.html", **res)
     
     return render_template("find_leads.html")

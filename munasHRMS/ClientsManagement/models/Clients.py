@@ -17,7 +17,7 @@ class Clients(models.Model):
             constants.CLIENT__CP_PHONE_NUMBER:  [{"rule": "datatype", "datatype": list},
                                                 {"rule": "collection_format", "datatype": list,
                                             "validation_rules": [{"rule": "required"}, {"rule": "phone_number"}]}],
-            constants.CLIENT__CP_EMAIL: [{"rule": "email"}, {"rule": "datatype", "datatype": str}],
+            constants.CLIENT__CP_EMAIL_ADDRESS: [{"rule": "email"}, {"rule": "datatype", "datatype": str}],
             constants.CLIENT__COUNTRY: [{"rule": "required"}, {"rule": "datatype", "datatype": str}],
             constants.CLIENT__CITY: [{"rule": "required"}, {"rule": "datatype", "datatype": str}],
             constants.CLIENT__ZIPCODE: [{"rule": "datatype", "datatype": str}],
@@ -31,8 +31,9 @@ class Clients(models.Model):
 
     name = db.StringField(required=True)
     organization = db.LazyReferenceField('Organization', required=True)
-    cp_phone_number = db.ListField()
     contact_person = db.StringField(required=True)
+    cp_phone_number = db.ListField()
+    cp_email_address = db.StringField()
     country = db.StringField(required=True)
     city = db.StringField(required=True)
     zipcode = db.StringField(required=True)
@@ -47,7 +48,7 @@ class Clients(models.Model):
             constants.CLIENT__ID: self[constants.CLIENT__ID],
             constants.CLIENT__NAME: self[constants.CLIENT__NAME],
             constants.CLIENT__CP_PHONE_NUMBER: self[constants.CLIENT__CP_PHONE_NUMBER],
-            constants.CLIENT__CP_EMAIL: self[constants.CLIENT__CP_EMAIL],
+            constants.CLIENT__CP_EMAIL_ADDRESS: self[constants.CLIENT__CP_EMAIL_ADDRESS],
             constants.CLIENT__COUNTRY: self[constants.CLIENT__COUNTRY],
             constants.CLIENT__CITY: self[constants.CLIENT__CITY],
             constants.CLIENT__CONTACT_PERSON: self[constants.CLIENT__CONTACT_PERSON],

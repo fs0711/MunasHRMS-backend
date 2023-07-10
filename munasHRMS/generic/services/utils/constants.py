@@ -101,6 +101,8 @@ CREATED_ON = "created_on"
 UPDATED_ON = "updated_on"
 CREATED_BY = "created_by"
 UPDATED_BY = "updated_by"
+ASSIGNED_TO = "assigned_to"
+ASSIGNED_BY = "assigned_by"
 
 
 CURRENT_TIME = "current_time"
@@ -212,7 +214,7 @@ CLIENT__ID = "client_id"
 CLIENT__NAME = "name"
 CLIENT__CONTACT_PERSON = "contact_person"
 CLIENT__CP_PHONE_NUMBER = "cp_phone_number"
-CLIENT__CP_EMAIL = "cp_email"
+CLIENT__CP_EMAIL_ADDRESS = "cp_email_address"
 CLIENT__CITY = "city"
 CLIENT__ZIPCODE = "zipcode"
 CLIENT__COUNTRY = "country"
@@ -227,7 +229,7 @@ REQUIRED_FIELDS_LIST__CLIENTS = [
 
 OPTIONAL_FIELDS_LIST__CLIENTS = [
     CLIENT__CONTACT_PERSON,
-    CLIENT__CP_EMAIL,
+    CLIENT__CP_EMAIL_ADDRESS,
     CLIENT__CP_PHONE_NUMBER,
     CLIENT__ZIPCODE
 ]
@@ -241,7 +243,7 @@ SITE__CITY = "city"
 SITE__COUNTRY = "country"
 SITE__ZIPCODE = "zipcode"
 SITE__CONTACT_PERSON = "contact_person"
-SITE__CP_EMAIL = "cp_email"
+SITE__CP_EMAIL_ADDRESS = "cp_email_address"
 SITE__CP_PHONE_NUMBER = "cp_phone_number"
 
 REQUIRED_FIELDS_LIST__SITE = [
@@ -252,9 +254,9 @@ REQUIRED_FIELDS_LIST__SITE = [
     SITE__ZIPCODE
 ]
 
-OPTIONAL_FIELDS_LIST_SITE = [
+OPTIONAL_FIELDS_LIST__SITE = [
     SITE__CONTACT_PERSON,
-    SITE__CP_EMAIL,
+    SITE__CP_EMAIL_ADDRESS,
     SITE__CP_PHONE_NUMBER
 ]
 
@@ -291,12 +293,74 @@ UPDATE_FIELDS_LIST__ORGANIZATION = list(
     set(REQUIRED_FIELDS_LIST__ORGANIZATION + [ID]))
 
 
+# Employee Constants
+EMPLOYEE = "employee"
+EMPLOYEE__ID = "employee_id"
+EMPLOYEE__NAME = "name"
+EMPLOYEE__NIC = "nic"
+EMPLOYEE__PHONE_NUMBER = "phone_number"
+EMPLOYEE__EMAIL_ADDRESS = "email_address"
+EMPLOYEE__ADDRESS = "address"
+EMPLOYEE__GENDER = "gender"
+EMPLOYEE__COUNTRY = "country"
+EMPLOYEE__CITY = "city"
+EMPLOYEE__ASSIGNED_TO = "assigned_to"
+EMPLOYEE__ASSIGNED_BY = "assigned_by"
+EMPLOYEE__TRANSFERED = "transfered"
+EMPLOYEE__TRANSFERED_ON = "transfered_on"
+EMPLOYEE__ALLOCATED_LEAVES = "allocated_leaves"
+EMPLOYEE__CONSUMED_LEAVES = "consumed_leaves"
+EMPLOYEE__REMAINING_LEAVES = "remaining"
+EMPLOYEE__JOINING_DATE = "joining_date"
+EMPLOYEE__PROBATION_PERIOD = "probation_period"
+EMPLOYEE__HISTORY = "history"
+EMPLOYEE__USER_ID = "user_id"
 
 
+#Employee
+REQUIRED_FIELDS_LIST__EMPLOYEE = [
+    EMPLOYEE__NAME,
+    EMPLOYEE__PHONE_NUMBER,
+    EMPLOYEE__EMAIL_ADDRESS,
+    EMPLOYEE__ADDRESS,
+    EMPLOYEE__GENDER,
+    EMPLOYEE__COUNTRY,
+    EMPLOYEE__CITY,
+    EMPLOYEE__ALLOCATED_LEAVES,
+    EMPLOYEE__CONSUMED_LEAVES,
+    EMPLOYEE__JOINING_DATE,
+    EMPLOYEE__PROBATION_PERIOD,
+    USER__PASSWORD,
+    USER__ROLE,
+    USER__ORGANIZATION,
+    USER__MANAGER,
+    ASSIGNED_TO,
+    ASSIGNED_BY
+]
 
 
+#Leave Constants
+LEAVE = "leave"
+LEAVE__ID = "leave_id"
+LEAVE__START = "leave_start"
+LEAVE__END = "leave_end"
+LEAVE__NOTE = "note"
+LEAVE__DNOTE = "deny_note"
+LEAVE__APPROVED = "approved"
+LEAVE__REVIEWED = "reviewed"
+LEAVE__TYPE = "leave_type"
 
+REQUIRED_FIELDS_LIST__LEAVE = [
+    LEAVE__TYPE,
+    LEAVE__END,
+    LEAVE__NOTE,
+    LEAVE__START
+]
 
+UPDATE_FIELDS_LIST__LEAVE = [
+    ID,
+    'status'
+]
 
 
 
