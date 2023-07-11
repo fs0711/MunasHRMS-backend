@@ -8,7 +8,6 @@ from math import nan, isnan
 from ast import Constant
 from munasHRMS.generic.controllers import Controller
 from munasHRMS.ClientsManagement.models.Clients import Clients
-from munasHRMS.LeadsManagement.controllers.LeadsHistoryController import LeadsHistoryController
 from munasHRMS.UserManagement.controllers.UserController import UserController
 from munasHRMS.generic.services.utils import constants, response_codes, response_utils, common_utils, pipeline
 from munasHRMS import config
@@ -46,7 +45,7 @@ class ClientsController(Controller):
 
 
     @classmethod
-    def get_clients(cls):
+    def get_sites(cls):
         return response_utils.get_response_object(
             response_code=response_codes.CODE_SUCCESS,
             response_message=response_codes.MESSAGE_SUCCESS,
