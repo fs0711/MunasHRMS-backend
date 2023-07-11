@@ -37,7 +37,7 @@ def read_view(data):
     return ClientsController.read_controller(data=data)
 
 
-@sites_bp.route("/getclients", methods=["GET"])
+@sites_bp.route("/getsites", methods=["GET"])
 @decorators.is_authenticated
 # @decorators.keys_validator()
 def get_view():

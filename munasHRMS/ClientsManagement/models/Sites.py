@@ -6,7 +6,7 @@
 from munasHRMS.generic import models
 from munasHRMS.generic import db
 from munasHRMS.generic.services.utils import constants, common_utils
-from munasHRMS.SITEsManagement.models.SITEs import SITEs
+from munasHRMS.ClientsManagement.models.Clients import Clients
 
 class Sites(models.Model):
     @classmethod
@@ -29,7 +29,7 @@ class Sites(models.Model):
     }
 
     name = db.StringField(required=True)
-    SITE = db.LazyReferenceField('SITE', required=True)
+    client = db.LazyReferenceField('Client', required=True)
     contact_person = db.StringField(required=True)
     cp_phone_number = db.ListField()
     cp_email_address = db.StringField()
