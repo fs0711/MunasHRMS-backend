@@ -27,6 +27,7 @@ class EmployeesController(Controller):
                 response_data=error_messages
             )
         current_user = common_utils.current_user()
+
         already_exists = cls.db_read_records(read_filter={
             constants.EMPLOYEE__PHONE_NUMBER: data[constants.EMPLOYEE__PHONE_NUMBER],
         })
@@ -43,7 +44,7 @@ class EmployeesController(Controller):
             constants.USER__PASSWORD:data[constants.USER__PASSWORD],
             constants.USER__ROLE:data[constants.USER__ROLE],
             constants.USER__MANAGER:data[constants.USER__MANAGER],
-            constants.USER__ORGANIZATION:data[constants.USER__ORGANIZATION],
+            constants.USER__ORGANIZATION:data[constants.USER__ORGANIZATION] if data.get(constants.USER__ORGANIZATION) else str(current_user[constants.USER__ORGANIZATION].id),
             constants.EMPLOYEE__PHONE_NUMBER:data[constants.EMPLOYEE__PHONE_NUMBER]
             }
               
@@ -54,7 +55,9 @@ class EmployeesController(Controller):
             del data[constants.USER__PASSWORD]
             del data[constants.USER__ROLE]
             del data[constants.USER__MANAGER]
-            del data[constants.USER__ORGANIZATION]
+            if data.get(constants.USER__ORGANIZATION): 
+                del data[constants.USER__ORGANIZATION]
+            data[constants.ASSIGNED_BY] = current_user
             data[constants.EMPLOYEE__USER_ID] = res['response_data']['id']
             data[constants.EMPLOYEE__JOINING_DATE] = data[constants.EMPLOYEE__JOINING_DATE] * 1000
             cycle_date = data[constants.EMPLOYEE__JOINING_DATE] + (data[constants.EMPLOYEE__PROBATION_PERIOD] * 24 * 60*60*1000)
