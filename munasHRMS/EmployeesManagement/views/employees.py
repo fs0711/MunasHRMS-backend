@@ -18,7 +18,8 @@ employees_bp = Blueprint("employees_bp", __name__)
 @employees_bp.route("/create", methods=["POST"])
 @decorators.is_authenticated
 @decorators.keys_validator(
-    constants.REQUIRED_FIELDS_LIST__EMPLOYEE
+    constants.REQUIRED_FIELDS_LIST__EMPLOYEE,
+    constants.OPTIONAL_FIELDS_LIST__EMPLOYEE
 )
 def employees_create_view(data):
     return EmployeesController.create_controller(data=data)

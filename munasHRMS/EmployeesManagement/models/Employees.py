@@ -54,6 +54,7 @@ class Employees(models.Model):
     probation_period = db.IntField(required=True)
     history = db.ListField(required=True)
     user_id = db.LazyReferenceField(User, required=True)
+    custom_data = db.DictField(default={})
 
     def __str__(self):
         return str(self.pk)
@@ -79,6 +80,7 @@ class Employees(models.Model):
             constants.EMPLOYEE__JOINING_DATE: self[constants.EMPLOYEE__JOINING_DATE],
             constants.EMPLOYEE__PROBATION_PERIOD: self[constants.EMPLOYEE__PROBATION_PERIOD],            
             constants.EMPLOYEE__HISTORY: self[constants.EMPLOYEE__HISTORY],
+            constants.EMPLOYEE__CUSTOM_DATA:self[constants.EMPLOYEE__CUSTOM_DATA] if constants.EMPLOYEE__CUSTOM_DATA else {},
             'current': self[constants.EMPLOYEE__HISTORY][-1]
         }
 

@@ -36,7 +36,7 @@ class Organization(models.Model):
     cp_email_address = db.StringField(required=True)
     cp_phone_number = db.ListField(required=True)
     ntn = db.StringField(default='')
-
+    custom_fields = db.ListField(default=[])
 
 
     def __str__(self):
@@ -55,7 +55,8 @@ class Organization(models.Model):
             constants.ORGANIZATION__CP_NAME: self[constants.ORGANIZATION__CP_NAME],
             constants.ORGANIZATION__CP_EMAIL: self[constants.ORGANIZATION__CP_EMAIL],
             constants.ORGANIZATION__CP_PHONE_NUMBER: self[constants.ORGANIZATION__CP_PHONE_NUMBER],
-            constants.ORGANIZATION__NTN: self[constants.ORGANIZATION__NTN]
+            constants.ORGANIZATION__NTN: self[constants.ORGANIZATION__NTN],
+            constants.ORGANIZATION__CUSTOM_FIELDS: self[constants.ORGANIZATION__CUSTOM_FIELDS] if constants.ORGANIZATION__CUSTOM_FIELDS else []
         }
 
     def dispaly_id_name(self):

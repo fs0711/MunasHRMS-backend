@@ -14,6 +14,7 @@ from datetime import datetime, timedelta
 class OrganizationController(Controller):
     Model = Organization
 
+
     @classmethod
     def create_controller(cls, data):
         is_valid, error_messages = cls.cls_validate_data(data=data)
@@ -42,6 +43,7 @@ class OrganizationController(Controller):
                 obj.display() for obj in cls.db_read_records(read_filter=data)
             ])
 
+
     @classmethod
     def update_controller(cls, data):
         is_valid, error_messages, obj = cls.db_update_single_record(
@@ -65,6 +67,7 @@ class OrganizationController(Controller):
             response_data=obj.display(),
         )
 
+
     @classmethod
     def suspend_controller(cls, data):
         _, _, obj = cls.db_update_single_record(
@@ -84,6 +87,7 @@ class OrganizationController(Controller):
             response_message=response_codes.MESSAGE_NOT_FOUND_DATA.format(
                 constants.ORGANIZATION.title(), constants.ID
             ))
+
 
     @classmethod
     def get_organizations(cls):

@@ -26,18 +26,6 @@ def create_organizations(data):
     return res
 
 
-@organizations_bp.route("/read", methods=["POST"])
-@decorators.is_authenticated
-@decorators.keys_validator(
-    constants.REQUIRED_FIELDS_LIST__ORGANIZATION,
-    constants.OPTIONAL_FIELDS_LIST__ORGANIZATION, 
-    request_form_data=False
-)
-def organization_read_view(data):
-    res = OrganizationController.read_controller(data=data)
-    return res
-
-
 @organizations_bp.route("/read", methods=["GET"])
 @decorators.is_authenticated
 @decorators.keys_validator()
