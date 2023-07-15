@@ -7,15 +7,14 @@ from math import nan, isnan
 # Local imports
 from ast import Constant
 from munasHRMS.generic.controllers import Controller
-from munasHRMS.ClientsManagement.models.Clients import Clients
-from munasHRMS.UserManagement.controllers.UserController import UserController
+from munasHRMS.ClientsManagement.models.Sites import Sites
 from munasHRMS.generic.services.utils import constants, response_codes, response_utils, common_utils, pipeline
 from munasHRMS import config
 from datetime import datetime
 
 
-class ClientsController(Controller):
-    Model = Clients
+class SitesController(Controller):
+    Model = Sites
 
     @classmethod
     def create_controller(cls, data):
