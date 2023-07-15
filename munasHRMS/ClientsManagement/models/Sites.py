@@ -29,7 +29,7 @@ class Sites(models.Model):
     }
 
     name = db.StringField(required=True)
-    client = db.LazyReferenceField('Client', required=True)
+    client = db.LazyReferenceField('Clients', required=True)
     contact_person = db.StringField(required=True)
     cp_phone_number = db.ListField()
     cp_email_address = db.StringField()

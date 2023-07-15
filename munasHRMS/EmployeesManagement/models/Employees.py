@@ -45,15 +45,15 @@ class Employees(models.Model):
     gender = db.StringField()
     country = db.StringField(required=True)
     city = db.StringField(required=True)
-    assigned_to = db.LazyReferenceField(User, required=True)
-    assigned_by = db.LazyReferenceField(User, required=True)
+    assigned_to = db.LazyReferenceField('User', required=True)
+    assigned_by = db.LazyReferenceField('User', required=True)
     employee_id = db.SequenceField(value_decorator='EL-{}'.format)
     allocated_leaves = db.IntField(required=True)
     consumed_leaves = db.IntField(required=True)
     joining_date = db.IntField(required=True)
     probation_period = db.IntField(required=True)
     history = db.ListField(required=True)
-    user_id = db.LazyReferenceField(User, required=True)
+    user_id = db.LazyReferenceField('User', required=True)
     custom_data = db.DictField(default={})
 
     def __str__(self):

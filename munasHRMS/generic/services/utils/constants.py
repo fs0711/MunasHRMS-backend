@@ -343,6 +343,7 @@ OPTIONAL_FIELDS_LIST__EMPLOYEE = [
     EMPLOYEE__CUSTOM_DATA
 ]
 
+
 #Leave Constants
 LEAVE = "leave"
 LEAVE__ID = "leave_id"
@@ -366,6 +367,20 @@ UPDATE_FIELDS_LIST__LEAVE = [
     'status'
 ]
 
+
+#Schedule constants
+SCHEDULE ='schedule'
+SCHEDULE__DATE = "date"
+SCHEDULE__CLIENT = "client"
+SCHEDULE__SITE = "site"
+SCHEDULE__SCHEDULES = "schedules"
+
+REQUIRED_FIELDS_LIST__SCHEDULE = [
+    SCHEDULE__DATE,
+    SCHEDULE__CLIENT,
+    SCHEDULE__SITE,
+    SCHEDULE__SCHEDULES
+]
 
 
 
