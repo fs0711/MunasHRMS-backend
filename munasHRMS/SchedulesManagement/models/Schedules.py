@@ -26,7 +26,7 @@ class Schedule(models.Model):
     }
 
     client = db.LazyReferenceField('Clients', required=True)
-    Site = db.LazyReferenceField('Sites', required=True)
+    site = db.LazyReferenceField('Sites', required=True)
     date = db.IntField(required=True)
     schedules=db.ListField(required=True)
     

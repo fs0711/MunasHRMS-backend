@@ -17,9 +17,7 @@ schedules_bp = Blueprint("schedules_bp", __name__)
 @schedules_bp.route("/create", methods=["POST"])
 @decorators.is_authenticated
 @decorators.keys_validator(
-constants.REQUIRED_FIELDS_LIST__ORGANIZATION,
-    constants.OPTIONAL_FIELDS_LIST__ORGANIZATION,
-    request_form_data=False
+constants.REQUIRED_FIELDS_LIST__SCHEDULE,
 )
 def create_view(data):
     res = ScheduleController.create_controller(data=data)
@@ -36,9 +34,7 @@ def read_view(data):
 @schedules_bp.route("/update", methods=["POST"])
 @decorators.is_authenticated
 @decorators.keys_validator(
-    [],
-    constants.UPDATE_FIELDS_LIST__ORGANIZATION,
-    request_form_data=False
+    []
 )
 def update_view(data):
     return ScheduleController.read_controller(data={constants.ID:data[constants.ID]})
@@ -47,8 +43,7 @@ def update_view(data):
 @schedules_bp.route("/suspend", methods=["GET"])
 @decorators.is_authenticated
 @decorators.keys_validator(
-    [constants.ID],
-    request_form_data=False
+    [constants.ID]
 )
 def suspend_view(data):
     res = ScheduleController.suspend_controller(data)

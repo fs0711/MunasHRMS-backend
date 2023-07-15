@@ -242,6 +242,7 @@ SITE__ADDRESS = "address"
 SITE__CITY = "city"
 SITE__COUNTRY = "country"
 SITE__ZIPCODE = "zipcode"
+SITE__CLIENT = "client"
 SITE__CONTACT_PERSON = "contact_person"
 SITE__CP_EMAIL_ADDRESS = "cp_email_address"
 SITE__CP_PHONE_NUMBER = "cp_phone_number"
@@ -251,7 +252,8 @@ REQUIRED_FIELDS_LIST__SITE = [
     SITE__ADDRESS,
     SITE__CITY,
     SITE__COUNTRY,
-    SITE__ZIPCODE
+    SITE__ZIPCODE,
+    SITE__CLIENT
 ]
 
 OPTIONAL_FIELDS_LIST__SITE = [
