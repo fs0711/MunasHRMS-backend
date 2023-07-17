@@ -23,7 +23,7 @@
         },
         {
             "manager": 1,
-            "name": "Owner",
+            "name": "owner",
             "rights": [],
             "title": "Owner",
             "user_role_id": 2
