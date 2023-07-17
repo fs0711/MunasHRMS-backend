@@ -44,7 +44,7 @@ MONGO_DB_PASSWORD = "k9QauSm0wACivnIO"
 
 MONGO_DB_URI = ""
 if ENVIRONMENT == "LOCAL":
-    MONGO_DB_URI = f"mongodb://localhost:27017/munasHRMS"
+    MONGO_DB_URI = f"mongodb://localhost:27017/munas-HRMS"
 if ENVIRONMENT == "STAGING":
     FUNCTION_LOGGING = True
     static_data_path = os.path.join(
