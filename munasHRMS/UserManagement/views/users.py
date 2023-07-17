@@ -131,22 +131,6 @@ def restore_view(data):
     return redirect("/read")
 
 
-# @users_bp.route("/", methods=["GET"])
-# @decorators.logging
-# @decorators.keys_validator()
-# def logined_user_view(data):
-#     return render_template("login.html", Response=response_utils.get_response_object())
-
-
-# @users_bp.route("/", methods=["POST"])
-# @decorators.logging
-# @decorators.keys_validator(constants.LOGIN_REQUIRED_FIELDS_LIST, [])
-# def login_user_view(data):
-#     res = UserController.login_controller(data=data)
-#     return render_template("login.html", **res)
-
-
-
 @users_bp.route("/logout", methods=["GET"])
 @decorators.logging
 @decorators.is_authenticated
