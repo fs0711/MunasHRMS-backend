@@ -86,6 +86,5 @@ class Employees(models.Model):
             constants.EMPLOYEE__ID: self[constants.EMPLOYEE__ID],
             constants.EMPLOYEE__NAME: self[constants.EMPLOYEE__NAME],
             constants.EMPLOYEE__PHONE_NUMBER: self[constants.EMPLOYEE__PHONE_NUMBER],
-            constants.EMPLOYEE__ASSIGNED_TO: self[constants.EMPLOYEE__ASSIGNED_TO].fetch().name,
             constants.CREATED_ON: common_utils.epoch_to_datetime(self[constants.CREATED_ON]),
         }

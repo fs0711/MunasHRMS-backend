@@ -92,8 +92,8 @@ class EmployeesController(Controller):
             user_childs = UserController.get_user_childs(
                 user=common_utils.current_user(), return_self=True)
 
-        user_ids = [id[constants.ID] for id in user_childs]
-        filter[constants.ASSIGNED_TO+"__in"] = [str(id) for id in user_ids]
+        filter[constants.EMPLOYEE__USER_ID+"__in"] = [str(id[constants.ID]) for id in user_childs]
+        # filter[constants.ID] = [str(id) for id in user_ids]
         if data.get('page'):
             page = int(data['page'])
         else:
