@@ -13,9 +13,7 @@ class Sites(models.Model):
     def validation_rules(cls):
         return {
             constants.SITE__NAME: [{"rule": "required"}, {"rule": "datatype", "datatype": str}],
-            constants.SITE__CP_PHONE_NUMBER:  [{"rule": "datatype", "datatype": list},
-                                                {"rule": "collection_format", "datatype": list,
-                                            "validation_rules": [{"rule": "required"}, {"rule": "phone_number"}]}],
+            constants.CLIENT__CP_PHONE_NUMBER:  [{"rule": "datatype", "datatype": list}],
             constants.SITE__CP_EMAIL_ADDRESS: [{"rule": "email"}, {"rule": "datatype", "datatype": str}],
             constants.SITE__COUNTRY: [{"rule": "required"}, {"rule": "datatype", "datatype": str}],
             constants.SITE__CITY: [{"rule": "required"}, {"rule": "datatype", "datatype": str}],
