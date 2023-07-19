@@ -27,6 +27,9 @@ class ClientsController(Controller):
                 response_message=response_codes.MESSAGE_VALIDATION_FAILED,
                 response_data=error_messages
             )
+        current_user = common_utils.current_user()
+        if not data.get(constants.CLIENT__ORGANIZATION):
+            data[constants.CLIENT__ORGANIZATION] = str(current_user[constants.USER__ORGANIZATION].id)
         _, _, obj = cls.db_insert_record(
             data=data, default_validation=False)
         return response_utils.get_response_object(
