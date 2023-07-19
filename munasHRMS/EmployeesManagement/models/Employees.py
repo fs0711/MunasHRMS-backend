@@ -45,8 +45,6 @@ class Employees(models.Model):
     gender = db.StringField()
     country = db.StringField(required=True)
     city = db.StringField(required=True)
-    assigned_to = db.LazyReferenceField('User', required=True)
-    assigned_by = db.LazyReferenceField('User', required=True)
     employee_id = db.SequenceField(value_decorator='EL-{}'.format)
     allocated_leaves = db.IntField(required=True)
     consumed_leaves = db.IntField(required=True)
@@ -70,8 +68,6 @@ class Employees(models.Model):
             constants.EMPLOYEE__GENDER: self[constants.EMPLOYEE__GENDER],
             constants.EMPLOYEE__COUNTRY: self[constants.EMPLOYEE__COUNTRY],
             constants.EMPLOYEE__CITY: self[constants.EMPLOYEE__CITY],
-            constants.EMPLOYEE__ASSIGNED_TO: self[constants.EMPLOYEE__ASSIGNED_TO].fetch().name,
-            constants.EMPLOYEE__ASSIGNED_BY: self[constants.EMPLOYEE__ASSIGNED_BY].fetch().name,
             constants.STATUS: self[constants.STATUS],
             constants.CREATED_ON: self[constants.CREATED_ON],
             constants.UPDATED_ON: self[constants.UPDATED_ON],

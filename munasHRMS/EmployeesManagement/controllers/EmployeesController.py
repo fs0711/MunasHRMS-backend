@@ -57,7 +57,8 @@ class EmployeesController(Controller):
             del data[constants.USER__MANAGER]
             if data.get(constants.USER__ORGANIZATION): 
                 del data[constants.USER__ORGANIZATION]
-            data[constants.ASSIGNED_BY] = current_user
+            if data.get(constants.ASSIGNED_TO): 
+                del data[constants.ASSIGNED_TO]
             data[constants.EMPLOYEE__USER_ID] = res['response_data']['id']
             data[constants.EMPLOYEE__JOINING_DATE] = data[constants.EMPLOYEE__JOINING_DATE] * 1000
             cycle_date = data[constants.EMPLOYEE__JOINING_DATE] + (data[constants.EMPLOYEE__PROBATION_PERIOD] * 24 * 60*60*1000)
