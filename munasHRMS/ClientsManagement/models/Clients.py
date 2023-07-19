@@ -14,9 +14,10 @@ class Clients(models.Model):
     def validation_rules(cls):
         return {
             constants.CLIENT__NAME: [{"rule": "required"}, {"rule": "datatype", "datatype": str}],
-            constants.CLIENT__CP_PHONE_NUMBER:  [{"rule": "datatype", "datatype": list},
-                                                {"rule": "collection_format", "datatype": list,
-                                            "validation_rules": [{"rule": "required"}, {"rule": "phone_number"}]}],
+            constants.CLIENT__CP_PHONE_NUMBER:  [{"rule": "datatype", "datatype": list}],
+            # constants.CLIENT__CP_PHONE_NUMBER:  [{"rule": "datatype", "datatype": list},
+            #                                     {"rule": "collection_format", "datatype": list,
+            #                                 "validation_rules": [{"rule": "required"}, {"rule": "phone_number"}]}],
             constants.CLIENT__CP_EMAIL_ADDRESS: [{"rule": "email"}, {"rule": "datatype", "datatype": str}],
             constants.CLIENT__COUNTRY: [{"rule": "required"}, {"rule": "datatype", "datatype": str}],
             constants.CLIENT__CITY: [{"rule": "required"}, {"rule": "datatype", "datatype": str}],
