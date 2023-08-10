@@ -15,8 +15,7 @@ def register_scripts():
                 execute_update_id_field=False, execute_find_empty_leads=False,
                 execute_junk_follow_up_lead_history_removal=False, update_leads_execute=False, execute_find_missing=False, 
                 execute_report_generator=False)
-# Routing
-import munasHRMS.urls
+
 
 
 # application objects
@@ -30,3 +29,6 @@ moment = Moment(app)
 bcrypt = Bcrypt(app)
 app.config.update(config.MAIL_SETTINGS)
 register_scripts()
+
+# Routing
+import munasHRMS.urls
