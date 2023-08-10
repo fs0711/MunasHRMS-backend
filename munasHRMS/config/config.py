@@ -14,7 +14,7 @@ upload_files_path = os.path.join(os.getcwd(), "//uploads")
 
 
 #  EXPIRY TIME IN HOURS
-TOKEN_EXPIRY_TIME_WEB = 2
+TOKEN_EXPIRY_TIME_WEB = 720
 TOKEN_EXPIRY_TIME_MOBILE = 30
 # TOKEN_EXPIRY_TIME_EMAIL = 0.5
 
