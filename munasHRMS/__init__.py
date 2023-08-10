@@ -15,8 +15,8 @@ def register_scripts():
                 execute_update_id_field=False, execute_find_empty_leads=False,
                 execute_junk_follow_up_lead_history_removal=False, update_leads_execute=False, execute_find_missing=False, 
                 execute_report_generator=False)
-    # Routing
-    import munasHRMS.urls
+# Routing
+import munasHRMS.urls
 
 
 # application objects
