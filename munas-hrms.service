@@ -7,7 +7,7 @@ User=root
 Group=www-data
 WorkingDirectory=/home/munas-hrms-backend
 Environment="PATH=/home/munas-hrms-backend/munas-hrms-env/bin"
-ExecStart=/home/munas-hrms-backend/munas-hrms-env/bin/uwsgi --ini munashrms.ini
+ExecStart=/home/munas-iot-backend/munas-hrms-env/bin/gunicorn --config gunicorn.conf.py wsgi:app
 
 [Install]
 WantedBy=multi-user.target
