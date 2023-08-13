@@ -3,7 +3,7 @@ server {
     server_name munashrmsapi.digtrosoft.com;
 
     location / {
-        include uwsgi_params;
-        uwsgi_pass unix:/home/munas-hrms-backend/munashrms.sock;
+        include proxy_params;
+        proxy_pass http://unix:/home/munas-hrms-backend/munashrms.sock;
     }
 }
