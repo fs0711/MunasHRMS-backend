@@ -1,5 +1,5 @@
 [Unit]
-Description=uWSGI instance to serve munas HRMS
+Description=gunicorn instance to serve munas HRMS
 After=network.target
 
 [Service]
@@ -7,7 +7,7 @@ User=root
 Group=www-data
 WorkingDirectory=/home/munas-hrms-backend
 Environment="PATH=/home/munas-hrms-backend/munas-hrms-env/bin"
-ExecStart=/home/munas-iot-backend/munas-hrms-env/bin/gunicorn --config gunicorn.conf.py wsgi:app
+ExecStart=/home/munas-hrms-backend/munas-hrms-env/bin/gunicorn --config gunicorn.conf.py wsgi:app
 
 [Install]
 WantedBy=multi-user.target
