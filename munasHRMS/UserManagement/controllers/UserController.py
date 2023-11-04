@@ -208,8 +208,8 @@ class UserController(Controller):
             constants.ADMIN: 4,
             constants.OWNER: 3,
             constants.MANAGER: 2,
-            constants.AM: 1,
-            constants.USER: 0
+            constants.AM: 1
+            # constants.USER: 0
         }
         user_level = user_level__dict[user[constants.USER__ROLE]
                                       [constants.USER__ROLE__NAME]]
